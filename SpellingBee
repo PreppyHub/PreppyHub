@@ -516,6 +516,13 @@ local wordlist = {
     ["rbxassetid://90580036929928"] = "walnut",
     ["rbxassetid://109735990203735"] = "akin",
     ["rbxassetid://135295711012587"] = "gazebo",
+    ["rbxassetid://137038697933424"] = "steadfast",
+    ["rbxassetid://133330554655739"] = "bamboo",
+    ["rbxassetid://117211452869325"] = "syllable",
+    ["audio"] = "word",
+    ["audio"] = "word",
+    ["audio"] = "word",
+    ["audio"] = "word",
     ["audio"] = "word",
     ["audio"] = "word",
 }
