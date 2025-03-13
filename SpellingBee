@@ -503,7 +503,7 @@ local wordlist = {
     ["rbxassetid://111563154007908"] = "plenipotentiary",
     ["rbxassetid://77838375723230"] = "calumny",
     ["rbxassetid://121956817114946"] = "symbiosis",
-    ["rbxassetid://96968674308046"] = "mellifluous"
+    ["rbxassetid://96968674308046"] = "mellifluous",
     ["audio"] = "word",
     ["audio"] = "word",
 }
