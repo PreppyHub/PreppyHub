@@ -699,6 +699,8 @@ local function checksound()
     end
 end
 
+local MoreTab = Window:CreateTab("More", "circle-ellipsis")
+local VersionLabel = MoreTab:CreateLabel("Version 1.0")
 Rayfield:LoadConfiguration()
 
 while true do
