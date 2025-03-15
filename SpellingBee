@@ -590,21 +590,6 @@ local Window = Rayfield:CreateWindow({
 })
 
 local Tab = Window:CreateTab("Main")
-local Label = Tab:CreateLabel("Current Word: None")
-Tab:CreateButton({
-    Name = "Copy Word",
-    Callback = function()
-        setclipboard(lastword)
-        Rayfield:Notify({
-            Title = "Word Copied!",
-            Content = "The current word has been copied to your clipboard!",
-            Image = "clipboard-copy",
-            Duration = 2,
-        })
-    end,
-})
-
-local Divider1 = Tab:CreateDivider()
 Tab:CreateToggle({
     Name = "Auto Type",
     CurrentValue = false,
@@ -636,6 +621,38 @@ Tab:CreateSlider({
     Flag = "Flag3",
     Callback = function(value)
         typingdelay = value
+    end,
+})
+
+local Divider1 = Tab:CreateDivider()
+
+local Label = Tab:CreateLabel("Current Word: None")
+Tab:CreateButton({
+    Name = "Copy Current Word",
+    Callback = function()
+        setclipboard(lastword)
+        Rayfield:Notify({
+            Title = "Word Copied!",
+            Content = "The current word has been copied to your clipboard!",
+            Image = "clipboard-copy",
+            Duration = 2,
+        })
+    end,
+})
+
+local Divider2 = Tab:CreateDivider()
+
+local DiscordLabel = Tab:CreateLabel("Is the script missing a word? Join the Discord server below and report it!")
+Tab:CreateButton({
+    Name = "Copy Discord Invite Link",
+    Callback = function()
+        setclipboard("https://discord.gg/s3nQKytVkm")
+        Rayfield:Notify({
+            Title = "Link Copied!",
+            Content = "The Discord invite link has been copied to your clipboard!",
+            Image = "clipboard-copy",
+            Duration = 2,
+        })
     end,
 })
 
@@ -671,22 +688,6 @@ local function checksound()
         fsic(container)
     end
 end
-
-local Divider2 = Tab:CreateDivider()
-
-local DiscordLabel = Tab:CreateLabel("Is the script missing a word? Join the Discord server below and report it!")
-Tab:CreateButton({
-    Name = "Copy Discord Invite Link",
-    Callback = function()
-        setclipboard("https://discord.gg/s3nQKytVkm")
-        Rayfield:Notify({
-            Title = "Link Copied!",
-            Content = "The Discord invite link has been copied to your clipboard!",
-            Image = "clipboard-copy",
-            Duration = 2,
-        })
-    end,
-})
 
 Rayfield:LoadConfiguration()
 
