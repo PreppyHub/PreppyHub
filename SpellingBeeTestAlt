@@ -545,29 +545,6 @@ local istypingmaybe = false
 local typingword = false
 local pretypewait = 1.25
 
-local function presskey(key)
-    local keycode = keycodemap[key:lower()]
-    if not keycode then return end
-    keypress(keycode)
-    keyrelease(keycode)
-end
-
-local function autotypeword(word)
-    if istypingmaybe then return end
-    istypingmaybe = true
-    typingword = true
-    for letter in word:gmatch(".") do
-        if not typingword then break end
-        presskey(letter)
-        task.wait(typingdelay)
-    end
-    if typingword then
-        presskey("enter")
-    end
-    typingword = false
-    istypingmaybe = false
-end
-
 local Window = Rayfield:CreateWindow({
     Name = "Spelling Bee - preppy hub",
     Icon = "spell-check-2",
