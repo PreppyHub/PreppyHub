@@ -545,29 +545,6 @@ local istypingmaybe = false
 local typingword = false
 local pretypewait = 1.25
 
-local function presskey(key)
-    local keycode = keycodemap[key:lower()]
-    if not keycode then return end
-    keypress(keycode)
-    keyrelease(keycode)
-end
-
-local function autotypeword(word)
-    if istypingmaybe then return end
-    istypingmaybe = true
-    typingword = true
-    for letter in word:gmatch(".") do
-        if not typingword then break end
-        presskey(letter)
-        task.wait(typingdelay)
-    end
-    if typingword then
-        presskey("enter")
-    end
-    typingword = false
-    istypingmaybe = false
-end
-
 local Window = Rayfield:CreateWindow({
     Name = "Spelling Bee - preppy hub",
     Icon = "spell-check-2",
@@ -593,11 +570,44 @@ local Tab = Window:CreateTab("Main")
 Tab:CreateToggle({
     Name = "Auto Type",
     CurrentValue = false,
-    Flag = "Flag1",
     Callback = function(state)
-        autotypeenabled = state
-        if not state then
-            typingword = false
+        AutoType = state
+        if state then
+            spawn(function()
+                while AutoType do
+                    if lastword and not typingword and lastword ~= lastTypedWord then
+                        typingword = true
+                        wait(pretypewait)
+                        
+                        local currentText = ""
+                        for i = 1, #lastword do
+                            if not AutoType then break end
+                            
+                            if math.random(1, 25) == 1 then
+                                wait(math.random(2, 4) / 10)
+                            end
+                            
+                            if math.random(1, 30) == 1 and #currentText > 0 then
+                                currentText = currentText:sub(1, -2)
+                                game.Players.LocalPlayer.PlayerGui.Type.TextBox.Text = currentText
+                                wait(typingdelay)
+                            end
+                            
+                            currentText = lastword:sub(1, i)
+                            game.Players.LocalPlayer.PlayerGui.Type.TextBox.Text = currentText
+                            wait(typingdelay)
+                        end
+                        
+                        wait(0.2) -- Small delay before pressing enter
+                        game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.Return, false, game)
+                        game:GetService("VirtualInputManager"):SendKeyEvent(false, Enum.KeyCode.Return, false, game)
+                        
+                        typingword = false
+                        lastTypedWord = lastword
+                    end
+                    wait()
+                end
+            end)
         end
     end,
 })
