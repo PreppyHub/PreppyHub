@@ -681,11 +681,16 @@ Tab:CreateButton({
 local function updatecurrentword(word)
     if typingword or lastword == word then return end
     lastword = word
-    Label:Set("Current Word: " .. word)
+    
+    -- Capitalize the first letter of the word
+    local capitalizedWord = word:sub(1,1):upper() .. word:sub(2)
+
+    Label:Set("Current Word: " .. capitalizedWord)
+
     if autotypeenabled then
         task.delay(pretypewait, function()
             if lastword == word and not istypingmaybe then
-                autotypeword(word)
+                autotypeword(capitalizedWord)
             end
         end)
     end
