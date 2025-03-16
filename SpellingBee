@@ -610,7 +610,7 @@ Tab:CreateToggle({
                             wait(typingdelay)
                         end
                         
-                        wait(0.2) -- Small delay before pressing enter
+                        --wait(0.2) -- Small delay before pressing enter
                         game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.Return, false, game)
                         game:GetService("VirtualInputManager"):SendKeyEvent(false, Enum.KeyCode.Return, false, game)
                         
