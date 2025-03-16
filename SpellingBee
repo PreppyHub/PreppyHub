@@ -578,7 +578,7 @@ local Window = Rayfield:CreateWindow({
    },
 })
 
-local Tab = Window:CreateTab("Main")
+local Tab = Window:CreateTab("Main", "layout-list")
 Tab:CreateToggle({
     Name = "Auto Type",
     CurrentValue = false,
