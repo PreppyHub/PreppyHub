@@ -733,7 +733,7 @@ end
 
 -- Fonts Tab
 local FontTab = Window:CreateTab("Fonts", "file-type")
-local FontLabel1 = FontTab:CreateLabel("Select a font below to equip it!")
+local FontLabel1 = FontTab:CreateLabel("Click on a font below to equip it!")
 local FontLabel2 = FontTab:CreateLabel("Note: You can only equip fonts that you own. Earn fonts by opening crates in the Shop menu!")
 local fonts = {
     "Comic Neue Angular", "Creepster", "Fondamento", "Kalam",
@@ -746,7 +746,7 @@ createButton(FontTab, fonts, "EquipTypeFont")
 
 -- Effects Tab
 local EffectTab = Window:CreateTab("Death Effects", "skull")
-local EffectLabel1 = EffectTab:CreateLabel("Select a death effect below to equip it!")
+local EffectLabel1 = EffectTab:CreateLabel("Click on a death effect below to equip it!")
 local EffectLabel2 = EffectTab:CreateLabel("Note: You can only equip death effects that you own. Earn death effects by opening crates in the Shop menu!")
 local effects = {
     "Default", "Fade", "Hole", "Tomato", "Anvil", "Boulder", "Hook", "Big Foot",
