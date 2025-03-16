@@ -716,9 +716,48 @@ local function checksound()
     end
 end
 
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Events = ReplicatedStorage:WaitForChild("Events")
+
+-- Create Button Function to reduce redundancy
+local function createButton(tab, items, eventName)
+    for _, item in pairs(items) do
+        tab:CreateButton({
+            Name = item,
+            Callback = function()
+                Events:WaitForChild(eventName):FireServer(item)
+            end
+        })
+    end
+end
+
+-- Fonts Tab
+local FontTab = Window:CreateTab("Fonts", "file-type")
+local FontLabel1 = FontTab:CreateLabel("Select a font below to equip it!")
+local FontLabel2 = FontTab:CreateLabel("Note: You can only equip fonts that you own. Earn fonts by opening crates in the Shop menu!")
+local fonts = {
+    "Comic Neue Angular", "Creepster", "Fondamento", "Kalam",
+    "Patrick Hand", "Roman Antique", "Source Sans Pro", "Amatic SC",
+    "Grenze Gotisch", "Merriweather", "Special Elite", "Denk One",
+    "Fredoka One", "Permanent Marker", "Bangers", "Indie Flower",
+    "Luckiest Guy", "Press Start 2P"
+}
+createButton(FontTab, fonts, "EquipTypeFont")
+
+-- Effects Tab
+local EffectTab = Window:CreateTab("Death Effects", "skull")
+local EffectLabel1 = EffectTab:CreateLabel("Select a death effect below to equip it!")
+local EffectLabel2 = EffectTab:CreateLabel("Note: You can only equip death effects that you own. Earn death effects by opening crates in the Shop menu!")
+local effects = {
+    "Default", "Fade", "Hole", "Tomato", "Anvil", "Boulder", "Hook", "Big Foot",
+    "Explosion", "Glitch", "Lightning", "Ascension", "Dragon", "Duck", "Helicopter",
+    "Laser", "Black Hole", "UFO"
+}
+createButton(EffectTab, effects, "EquipDeathEffect")
+
 Rayfield:LoadConfiguration()
 
 while true do
-task.wait(0.5)
+task.wait(0.3)
 checksound()
 end
