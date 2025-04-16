@@ -1,6 +1,6 @@
 local hubgames = {
     ["PreppyHub/refs/heads/main/SpellingBee"] = {17590362521, 83091000527113, 17707569217, 91692552632068, 133419989757748},
-    -- ["PreppyHub/refs/heads/main/SpellingBeeNerdZone"] = {74779072921656},
+    ["PreppyHub/refs/heads/main/MathMurder"] = {127707120843339},
 }
 
 for url, ids in pairs(hubgames) do
